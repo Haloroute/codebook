@@ -30,7 +30,7 @@ class COCOStuffSegmenter(nn.Module):
         self.n_labels = 182
         model = torch.hub.load("kazuto1011/deeplab-pytorch", "deeplabv2_resnet101", n_classes=self.n_labels)
         ckpt_path = CKPT_PATH
-        model.load_state_dict(torch.load(ckpt_path))
+        model.load_state_dict(torch.load(ckpt_path, weights_only=False))
         self.model = model
 
         normalize = torchvision.transforms.Normalize(mean=self.mean, std=self.std)
